@@ -19,6 +19,14 @@ typedef enum log_level
   ll_fatal,
 } log_level;
 
+static std::function<void(log_level level, const char* message)> gMessageHandler = nullptr;
+
+void
+CefViewCoreLog::installCustomMessageHandler(const std::function<void(int level, const char* message)>& callback)
+{
+  gMessageHandler = callback;
+}
+
 #if defined(__APPLE__)
 #include <os/log.h>
 void
@@ -104,7 +112,12 @@ log_debug(const char* fmt, ...)
   va_start(args, fmt);
   vsnprintf(msg.data(), LOG_MSG_BUFFER_LIMIT, fmt, args);
   va_end(args);
-  cefView_log(ll_debug, msg.data());
+  
+  if (gMessageHandler) {
+    gMessageHandler(ll_debug, msg.data());
+  } else {
+    cefView_log(ll_debug, msg.data());
+  }
 }
 
 void
@@ -115,7 +128,12 @@ log_info(const char* fmt, ...)
   va_start(args, fmt);
   vsnprintf(msg.data(), LOG_MSG_BUFFER_LIMIT, fmt, args);
   va_end(args);
-  cefView_log(ll_info, msg.data());
+
+  if (gMessageHandler) {
+    gMessageHandler(ll_info, msg.data());
+  } else {
+    cefView_log(ll_info, msg.data());
+  }
 }
 
 void
@@ -126,7 +144,12 @@ log_error(const char* fmt, ...)
   va_start(args, fmt);
   vsnprintf(msg.data(), LOG_MSG_BUFFER_LIMIT, fmt, args);
   va_end(args);
-  cefView_log(ll_error, msg.data());
+
+  if (gMessageHandler) {
+    gMessageHandler(ll_error, msg.data());
+  } else {
+    cefView_log(ll_error, msg.data());
+  }
 }
 
 void
@@ -137,5 +160,10 @@ log_fatal(const char* fmt, ...)
   va_start(args, fmt);
   vsnprintf(msg.data(), LOG_MSG_BUFFER_LIMIT, fmt, args);
   va_end(args);
-  cefView_log(ll_fatal, msg.data());
+
+  if (gMessageHandler) {
+    gMessageHandler(ll_fatal, msg.data());
+  } else {
+    cefView_log(ll_fatal, msg.data());
+  }
 }

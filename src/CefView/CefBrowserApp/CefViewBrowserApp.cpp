@@ -45,6 +45,12 @@ CefViewBrowserApp::IsSafeToExit()
 }
 
 void
+CefViewBrowserApp::installCustomMessageHandler(const std::function<void(int level, const char* message)>& callback)
+{
+  CefViewCoreLog::installCustomMessageHandler(callback);
+}
+
+void
 CefViewBrowserApp::RegisterCustomSchemesHandlerFactories()
 {
   CefViewDefaultSchemeHandler::RegisterSchemeHandlerFactory();

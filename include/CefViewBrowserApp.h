@@ -20,6 +20,7 @@
 #pragma endregion cef_headers
 
 #include <CefViewBrowserAppDelegate.h>
+#include <functional>
 
 class CefViewBrowserApp
   : public CefApp
@@ -45,6 +46,8 @@ public:
   void CheckOutClient(void* ctx);
 
   bool IsSafeToExit();
+
+  static void installCustomMessageHandler(const std::function<void(int level, const char* message)>& callback);
 
 private:
   // Registers custom schemes handler factories

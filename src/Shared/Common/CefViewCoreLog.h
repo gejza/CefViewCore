@@ -9,6 +9,12 @@
 #define CefViewCoreLog_h
 #pragma once
 #include <string>
+#include <functional>
+
+namespace CefViewCoreLog {
+  void
+  installCustomMessageHandler(const std::function<void(int level, const char* message)>& callback);
+}
 
 void
 log_debug(const char* fmt, ...);
