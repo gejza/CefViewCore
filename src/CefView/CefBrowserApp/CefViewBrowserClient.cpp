@@ -16,8 +16,8 @@
 const CefFrameId CefViewBrowserClient::MAIN_FRAME = 0;
 const CefFrameId CefViewBrowserClient::ALL_FRAMES = -1;
 #else
-const CefFrameId CefViewBrowserClient::MAIN_FRAME = "0";
-const CefFrameId CefViewBrowserClient::ALL_FRAMES = "-1";
+const CefFrameId CefViewBrowserClient::MAIN_FRAME() { return "0"; }
+const CefFrameId CefViewBrowserClient::ALL_FRAMES() { return "-1"; }
 #endif
 
 CefViewBrowserClient::CefViewBrowserClient(CefRefPtr<CefViewBrowserApp> app,

@@ -76,12 +76,12 @@ public:
   /// <summary>
   ///
   /// </summary>
-  const static CefFrameId MAIN_FRAME;
+  const static CefFrameId MAIN_FRAME();
 
   /// <summary>
   ///
   /// </summary>
-  const static CefFrameId ALL_FRAMES;
+  const static CefFrameId ALL_FRAMES();
 
   /// <summary>
   ///
