@@ -13,8 +13,8 @@
 #include "CefViewQueryHandler/CefViewQueryHandler.h"
 
 #if CEF_VERSION_MAJOR < 122
-const CefFrameId CefViewBrowserClient::MAIN_FRAME = 0;
-const CefFrameId CefViewBrowserClient::ALL_FRAMES = -1;
+const CefFrameId CefViewBrowserClient::MAIN_FRAME() { return 0; }
+const CefFrameId CefViewBrowserClient::ALL_FRAMES() { return -1; }
 #else
 const CefFrameId CefViewBrowserClient::MAIN_FRAME() { return "0"; }
 const CefFrameId CefViewBrowserClient::ALL_FRAMES() { return "-1"; }
@@ -96,9 +96,9 @@ CefViewBrowserClient::TriggerEvent(CefRefPtr<CefBrowser> browser,
 
   if (browser) {
     std::vector<CefFrameId> frameIds;
-    if (MAIN_FRAME == frame_id) {
+    if (MAIN_FRAME() == frame_id) {
       frameIds.push_back(browser->GetMainFrame()->GetIdentifier());
-    } else if (ALL_FRAMES == frame_id) {
+    } else if (ALL_FRAMES() == frame_id) {
       browser->GetFrameIdentifiers(frameIds);
     } else {
       frameIds.push_back(frame_id);
