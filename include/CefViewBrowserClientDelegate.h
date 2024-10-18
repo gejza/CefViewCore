@@ -91,6 +91,10 @@ public:
                               const std::string& context,
                               const CefRefPtr<CefValue>& result) = 0;
 
+   virtual void onBeforeResourceLoad(CefRefPtr<CefBrowser> browser,
+                                           CefRefPtr<CefFrame> frame,
+                                           CefRefPtr<CefRequest> request) = 0;
+
   // context menu handler
 #pragma region ContextMenuHandler
   virtual void onBeforeContextMenu(CefRefPtr<CefBrowser> browser,

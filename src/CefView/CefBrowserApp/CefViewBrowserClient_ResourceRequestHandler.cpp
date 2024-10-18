@@ -31,6 +31,10 @@ CefViewBrowserClient::OnBeforeResourceLoad(CefRefPtr<CefBrowser> browser,
 #endif
 )
 {
+  auto delegate = client_delegate_.lock();
+  if (delegate)
+    delegate->onBeforeResourceLoad(browser, frame, request);
+
   auto url = request->GetURL().ToString();
   // logD("require resource: %s", url.c_str());
   return resource_manager_->OnBeforeResourceLoad(browser, frame, request, callback);
