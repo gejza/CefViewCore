@@ -55,7 +55,7 @@
 /// <summary>
 /// CEFVIEWClient.invokeMethod("method_name", ...)
 /// </summary>
-#define kCefViewInvokeMethodFunctionName "invoke"
+#define kCefViewInvokeMethodFunctionName "invokeMethod"
 
 /// <summary>
 /// CEFVIEWClient.addEventListener(type, listener)
