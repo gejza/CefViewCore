@@ -128,3 +128,10 @@ CefViewBrowserApp::GetDefaultClient()
 {
   return nullptr;
 }
+
+void 
+CefViewBrowserApp::installCustomMessageHandler(const std::function<void(int level, const char* message)>& callback) {
+	CefViewCoreLog::installCustomMessageHandler(callback);
+}
+
+
