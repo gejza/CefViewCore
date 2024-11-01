@@ -13,11 +13,11 @@
 #include "CefViewQueryHandler/CefViewQueryHandler.h"
 
 #if CEF_VERSION_MAJOR < 122
-const CefFrameId CefViewBrowserClient::MAIN_FRAME() { return 0; }
-const CefFrameId CefViewBrowserClient::ALL_FRAMES() { return -1; }
+CefFrameId CefViewBrowserClient::MAIN_FRAME() { return 0; }
+CefFrameId CefViewBrowserClient::ALL_FRAMES() { return -1; }
 #else
-const CefFrameId CefViewBrowserClient::MAIN_FRAME() { return "0"; }
-const CefFrameId CefViewBrowserClient::ALL_FRAMES() { return "-1"; }
+CefFrameId CefViewBrowserClient::MAIN_FRAME() { return "0"; }
+CefFrameId CefViewBrowserClient::ALL_FRAMES() { return "-1"; }
 #endif
 
 CefViewBrowserClient::CefViewBrowserClient(CefRefPtr<CefViewBrowserApp> app,
